@@ -19,6 +19,8 @@ tableData.forEach(function(ufo){
 // select the button and create function 
 var button = d3.select("#filter-btn");
 
+// create a filterData function
+// fuction returns the filtered data if input values(compare) equals to the search criteria
 function filterData(data, field, compare) {
     if(compare !== "") {
         return data.filter(function(ufo) {
@@ -30,31 +32,33 @@ function filterData(data, field, compare) {
     return data;
 }
 
+// create an event for button click
 button.on("click", function(){
-    // select the input element and get the html node
-    var inputElement1 = d3.select("#datetime");
+    // select the input element for date and get the html node
+    var dateElement = d3.select("#datetime");
     // get the value property of the input element
-    var inputDate = inputElement1.property("value");
+    var inputDate = dateElement.property("value");
     
     // select the input element for city and get the value info
-    var inputElement2 = d3.select("#city");
-    var inputCity = inputElement2.property("value");
+    var cityElement = d3.select("#city");
+    var inputCity = cityElement.property("value");
 
     // select the input element for state and get the value info
-    var inputElement3 = d3.select("#state");
-    var inputState = inputElement3.property("value");
+    var stateElement = d3.select("#state");
+    var inputState = stateElement.property("value");
 
     // select the input element for country and get the value info
-    var inputElement4 = d3.select("#country");
-    var inputCountry = inputElement4.property("value");
+    var countryElement = d3.select("#country");
+    var inputCountry = countryElement.property("value");
 
     //select the input element for shape and get the value info
-    var inputElement5 = d3.select("#shape");
-    var inputShape = inputElement5.property("value");
+    var shapeElement = d3.select("#shape");
+    var inputShape = shapeElement.property("value");
 
+    // create a variable for filtered data
     var filteredData = tableData;
 
-    // filter data for the search criterias
+    // use filterData function to filter data for the search criterias
     filteredData = filterData(filteredData, 'datetime', inputDate);
     filteredData = filterData(filteredData, 'city', inputCity);
     filteredData = filterData(filteredData, 'state', inputState);
